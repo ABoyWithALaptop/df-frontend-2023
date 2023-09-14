@@ -1,14 +1,75 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Bookstore</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Bookstore</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
 
-  <body>
-    Hello world
-    <script src="script.js"></script>
-  </body>
+	<body>
+		<header>
+			<h1>Bookstore</h1>
+			<figure id="personal">
+				<img src="" alt="avatar" srcset="" id="avatar" />
+				<figcaption id="name">john doe</figcaption>
+			</figure>
+		</header>
+
+		<main>
+			<form name="searchAndAddBookForm">
+				<input
+					type="text"
+					placeholder="Search book"
+					title="search"
+					id="searchBar"
+				/>
+				<button id="add" type="submit">Add book</button>
+				<table id="searchRes">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Author</th>
+							<th>Topic</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Book's name</td>
+							<td>Author's name</td>
+							<td>Topic a</td>
+							<td>
+								<button class="deleteBut">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+
+			<aside id="addBookModal">
+				<button type="button" class="closeBut">&times;</button>
+				<h2>Add book</h2>
+				<form name="addBookModalForm">
+					<label for="nameBook">Name</label>
+					<input type="text" id="nameBook" />
+					<label for="authorBook">Author</label>
+					<input type="text" id="authorBook" />
+					<select name="topicBook" id="topicBook" title="topicBook">
+						<option value="" class="topicOption">Programing</option>
+					</select>
+				</form>
+			</aside>
+			<aside id="deleteBookModal">
+				<button type="button" class="closeBut">&times;</button>
+				<article>
+					<h2>Delete book</h2>
+					<p>Do you want to delete <mark>Book name</mark></p>
+					<button id="deleteBut">Delete</button>
+					<button class="primary">Cancel</button>
+				</article>
+			</aside>
+		</main>
+		<script src="script.js"></script>
+	</body>
 </html>
