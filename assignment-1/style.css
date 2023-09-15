@@ -1,4 +1,198 @@
-html {
-  height: 100%;
-  width: 100%;
+:root {
+	--primary-button-color: #d2455a;
+	--primary-button-color-hover: #b40000;
+	--secondary-button-color: #e0e0e0;
+	--secondary-button-color-hover: #c2c2c2;
+	--secondary-color: #f7f8f9;
+	--primary-color: #fefefe;
+	--border-color: #c9d4dd;
+	--outlay-color: rgba(152, 152, 152, 0.114);
+	--font-close-button: 2rem;
+	--modal-padding: 2rem;
 }
+html {
+	height: 100%;
+	width: 100%;
+}
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body {
+	height: 100%;
+}
+select {
+	margin: 0;
+	padding: 0;
+}
+
+/* common part */
+main {
+	background-color: var(--secondary-color);
+	height: calc(100% - 58px);
+}
+.stdHeight {
+	padding: 10px;
+	border-radius: 5px;
+}
+/* handling data*/
+#handleData {
+	text-align: right;
+	padding: 10px 0;
+}
+section {
+	padding-inline: 1rem;
+}
+/* ------------------common part----------------------- */
+/* button */
+.primary {
+	background-color: var(--primary-button-color);
+	border: 0;
+
+	color: #fff;
+	width: 80px;
+}
+.primary:hover {
+	background-color: var(--primary-button-color-hover);
+	cursor: pointer;
+}
+
+/* -----------------button------------------------ */
+/* header */
+header {
+	color: #000;
+	background-color: var(--primary-color);
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	height: 58px;
+	border-bottom: var(--border-color) 2px solid;
+}
+#avatar {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+#personal {
+	display: flex;
+	width: 100px;
+	align-items: center;
+	gap: 5%;
+}
+/* -------------------------header----------------------------------- */
+
+/* table */
+table {
+	border: 1px solid;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+	box-sizing: border-box;
+}
+th,
+td {
+	border: var(--border-color) 2px solid;
+	border-collapse: collapse;
+	padding: 15px;
+	text-align: left;
+	background-color: var(--primary-color);
+}
+th {
+	font-size: 1.25rem;
+}
+input {
+	border: var(--border-color) 2px solid;
+}
+input + button {
+	margin-left: 10px;
+}
+/* delete action in table */
+.deleteLink {
+	color: red;
+	text-decoration: underline;
+}
+.deleteLink:hover {
+	cursor: pointer;
+}
+
+/* ------------------------------table------------------------------------- */
+/* modal */
+.overlay {
+	visibility: hidden;
+	display: flex;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	bottom: 0;
+	justify-content: center;
+	align-items: center;
+	background: var(--outlay-color);
+	backdrop-filter: saturate(50%) blur(05px);
+}
+.modal {
+	padding: var(--modal-padding);
+	display: inline-block;
+	position: relative;
+	border-radius: 5px;
+	border: var(--border-color) 2px solid;
+	background-color: #fff;
+	box-shadow: 5px 5px 5px -1px rgba(0, 0, 0, 0.42);
+	width: 30%;
+}
+.modal h2 {
+	padding-bottom: 2rem;
+	align-items: center;
+}
+.closeBut {
+	position: absolute;
+	right: 1rem;
+	top: 0.5rem;
+	background: none;
+	border: none;
+	font-size: var(--font-close-button);
+	font-weight: bold;
+	cursor: pointer;
+}
+button[type="submit"] {
+	float: right;
+}
+/* adding modal */
+#addBookModalOverlay input,
+#addBookModalOverlay select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: block;
+	border: var(--border-color) 2px solid;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+/* delete modal */
+#deleteBut {
+	background-color: var(--secondary-button-color);
+	border: 0;
+}
+#deleteBut:hover {
+	background-color: var(--secondary-button-color-hover);
+	cursor: pointer;
+}
+#deleteBookModalOverlay article {
+	text-align: center;
+}
+#deleteBookModalOverlay p {
+	padding: 0 1rem 1rem;
+	/* word-wrap: break-word; */
+	width: 70%;
+	margin: 0 auto;
+}
+#butGrp {
+	display: flex;
+	justify-content: space-evenly;
+}
+.deleteName {
+	font-weight: bold;
+	background: none;
+}
+/* ----------modal--------- */

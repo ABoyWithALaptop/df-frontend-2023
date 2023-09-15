@@ -11,64 +11,86 @@
 		<header>
 			<h1>Bookstore</h1>
 			<figure id="personal">
-				<img src="" alt="avatar" srcset="" id="avatar" />
+				<img src="./avatar.jpg" alt="avatar" srcset="" id="avatar" />
 				<figcaption id="name">john doe</figcaption>
 			</figure>
 		</header>
 
 		<main>
-			<form name="searchAndAddBookForm">
-				<input
-					type="text"
-					placeholder="Search book"
-					title="search"
-					id="searchBar"
-				/>
-				<button id="add" type="submit">Add book</button>
+			<section>
+				<div id="handleData">
+					<input
+						type="text"
+						placeholder="Search book"
+						title="search"
+						id="searchBar"
+						class="stdHeight"
+					/>
+					<button id="add" type="button" class="primary stdHeight">
+						Add book
+					</button>
+				</div>
 				<table id="searchRes">
+					<colgroup>
+						<col />
+						<col />
+						<col />
+						<col />
+						<col />
+					</colgroup>
 					<thead>
 						<tr>
-							<th>Name</th>
+							<th colspan="2">Name</th>
 							<th>Author</th>
 							<th>Topic</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>Book's name</td>
-							<td>Author's name</td>
-							<td>Topic a</td>
-							<td>
-								<button class="deleteBut">Delete</button>
-							</td>
-						</tr>
-					</tbody>
+					<tbody></tbody>
 				</table>
-			</form>
-
-			<aside id="addBookModal">
-				<button type="button" class="closeBut">&times;</button>
-				<h2>Add book</h2>
-				<form name="addBookModalForm">
-					<label for="nameBook">Name</label>
-					<input type="text" id="nameBook" />
-					<label for="authorBook">Author</label>
-					<input type="text" id="authorBook" />
-					<select name="topicBook" id="topicBook" title="topicBook">
-						<option value="" class="topicOption">Programing</option>
-					</select>
-				</form>
-			</aside>
-			<aside id="deleteBookModal">
-				<button type="button" class="closeBut">&times;</button>
-				<article>
-					<h2>Delete book</h2>
-					<p>Do you want to delete <mark>Book name</mark></p>
-					<button id="deleteBut">Delete</button>
-					<button class="primary">Cancel</button>
-				</article>
-			</aside>
+			</section>
+			<div class="overlay" id="addBookModalOverlay">
+				<aside class="modal" id="addBookModal">
+					<button type="button" class="closeBut closeAct">&times;</button>
+					<h2>Add book</h2>
+					<form name="addBookModalForm">
+						<label for="nameBook">Name</label>
+						<input type="text" id="nameBook" class="stdHeight" required />
+						<label for="authorBook">Author</label>
+						<input type="text" id="authorBook" class="stdHeight" required />
+						<label for="topicBook">Topic</label>
+						<select
+							name="topicBook"
+							id="topicBook"
+							title="topicBook"
+							class="stdHeight"
+							required
+						>
+							<option value="Programing" class="topicOption">Programing</option>
+							<option value="Database" class="topicOption">Database</option>
+							<option value="Devops" class="topicOption">Devops</option>
+						</select>
+						<button type="submit" class="primary stdHeight">Create</button>
+					</form>
+				</aside>
+			</div>
+			<div class="overlay" id="deleteBookModalOverlay">
+				<aside class="modal" id="deleteBookModal">
+					<button type="button" class="closeBut closeAct">&times;</button>
+					<article>
+						<h2>Delete book</h2>
+						<p>Do you want to delete <mark class="deleteName"></mark>.</p>
+						<div id="butGrp">
+							<button type="button" id="deleteBut" class="stdHeight">
+								Delete
+							</button>
+							<button type="button" class="primary stdHeight closeAct">
+								Cancel
+							</button>
+						</div>
+					</article>
+				</aside>
+			</div>
 		</main>
 		<script src="script.js"></script>
 	</body>
