@@ -62,7 +62,7 @@ function PaginationBar({ totalPage, siblingCount = 1, currentPage, setCurrentPag
     <div className='pagiWraper'>
       <button
         disabled={currentPage === 1}
-        className={`pagiBut ${theme ==='dark'&& "dark"}`}
+        className={`pagiBut ${theme === 'dark'?"dark" :"" }`}
         onClick={() => setCurrentPage(currentPage - 1)}
       >
         Prev
@@ -73,14 +73,14 @@ function PaginationBar({ totalPage, siblingCount = 1, currentPage, setCurrentPag
             key={index}
             onClick={() => setCurrentPage(page)}
             disabled={page === DOTS}
-            className={`pagiBut ${page === currentPage ? 'activePage' : ''} ${theme ==='dark'&& "dark"}`}
+            className={`pagiBut ${page === currentPage ? 'activePage' : ''} ${theme === 'dark'?"dark" :"" }`}
           >
             {page}
           </button>
         )
       })}
       <button disabled={currentPage === totalPage}
-        className={`pagiBut ${theme ==='dark'&& "dark"}`}
+        className={`pagiBut ${theme === 'dark'?"dark" :"" }`}
         onClick={() => setCurrentPage(currentPage + 1)}
       >
         Next

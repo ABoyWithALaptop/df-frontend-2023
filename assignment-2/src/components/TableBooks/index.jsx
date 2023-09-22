@@ -21,19 +21,19 @@ function TableBooks() {
       const render = propsDataList.map((value, index) => { 
         if ( value === "id") return null
         if (value === "name") return (
-          <td colSpan="2" key={`${item} ${index}`} className={`${theme === 'dark' && "dark"}`}>{item[value]}</td>
+          <td colSpan="2" key={`${item} ${index}`} className={`${theme === 'dark'?"dark" :"" }`}>{item[value]}</td>
         )
         if (value === "topic") return (
-          <td key={`${item} ${index}`} className={`${theme === 'dark' && "dark"}`}>{item[value]}</td>
+          <td key={`${item} ${index}`} className={`${theme === 'dark'?"dark" :"" }`}>{item[value]}</td>
         )
         
         if (value === "pureName") return (
-          <td key={`${item} ${index}`} className={`${theme === 'dark' && "dark"}`}>
+          <td key={`${item} ${index}`} className={`${theme === 'dark'?"dark" :"" }`}>
             <a className="deleteLink" onClick={() => handleDelete(item)}>Delete</a>
           </td>
         )
         return (
-          <td key={`${item} ${index}`} className={`${theme === 'dark' && "dark"}`}>{item[value]}</td>
+          <td key={`${item} ${index}`} className={`${theme === 'dark'?"dark" :"" }`}>{item[value]}</td>
         )
 
       })
@@ -53,10 +53,10 @@ function TableBooks() {
       </colgroup>
       <thead>
         <tr>
-          <th colSpan="2" className={`${theme === 'dark' && "dark"}`}>Name</th>
-          <th className={`${theme === 'dark' && "dark"}`}>Author</th>
-          <th className={`${theme === 'dark' && "dark"}`}>Topic</th>
-          <th className={`${theme === 'dark' && "dark"}`}>Actions</th>
+          <th colSpan="2" className={`${theme === 'dark'?"dark" :"" }`}>Name</th>
+          <th className={`${theme === 'dark'?"dark" :"" }`}>Author</th>
+          <th className={`${theme === 'dark'?"dark" :"" }`}>Topic</th>
+          <th className={`${theme === 'dark'?"dark" :"" }`}>Actions</th>
         </tr>
       </thead>
       <tbody>

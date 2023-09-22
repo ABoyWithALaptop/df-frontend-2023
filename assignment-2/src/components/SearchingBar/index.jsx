@@ -47,12 +47,12 @@ function ControlBar() {
         placeholder="Search book"
         title="search"
         id="searchBar"
-        className={`stdHeight ${theme ==='dark'&& "dark"}`}
+        className={`stdHeight ${theme === 'dark'?"dark" :"" }`}
         onChange={(e) => setSearchValue(e.target.value)}
         onKeyDown={(e) => { handleKeydown(e)}}
         value={searchValue}
       />
-      <button id="add" type="button" className={`primary stdHeight ${theme ==='dark'&& "dark"}`} onClick={() => setIsModalAddOpen(true)}>
+      <button id="add" type="button" className={`primary stdHeight ${theme === 'dark'?"dark" :"" }`} onClick={() => setIsModalAddOpen(true)}>
         Add book
       </button>
     </div>
