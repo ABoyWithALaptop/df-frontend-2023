@@ -1,0 +1,24 @@
+.pagiBut {
+	border: var(--border-color) 1px solid;
+	padding: 10px;
+	background-color: var(--secondary-button-color);
+}
+.pagiBut.dark {
+	background-color: var(--secondary-button-color-dark);
+	border: var(--border-color-dark) 1px solid;
+	/* color: #c9d4dd; */
+}
+.pagiWraper {
+	float: right;
+	margin: 10px 0;
+}
+.activePage {
+	background-color: var(--secondary-color);
+	/* color: #fff; */
+	font-weight: bold;
+}
+.activePage.dark {
+	background-color: var(--secondary-button-color-hover-dark);
+	/* color: #fff;
+	color: #c9d4dd; */
+}
