@@ -4,10 +4,10 @@ import { BooksViewContext } from '../../util/context/bookViewContext';
 import { BooksContext } from '../../util/context/booksDataContext';
 
 function PaginationWrapper({ children, data }) {
-  const [currentPage, setCurrentPage] = React.useState(1)
+  // const [currentPage, setCurrentPage] = React.useContext(1)
   const bookViewContext = React.useContext(BooksViewContext)
   const booksContext = React.useContext(BooksContext)
-  const { setCurrentView, maxView } = bookViewContext
+  const { setCurrentView, currentPage, setCurrentPage, maxView } = bookViewContext
   const { searchedBookList }= booksContext
   // const maxView = 3
   let searchList = []

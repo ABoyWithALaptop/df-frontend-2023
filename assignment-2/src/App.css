@@ -160,9 +160,15 @@ input {
 input.dark {
 	background-color: var(--primary-color-dark);
 	border: var(--border-color-dark) 2px solid;
+	color: #c9d4dd;
 }
 input + button {
 	margin-left: 10px;
+}
+select.dark {
+	background-color: var(--primary-color-dark);
+	border: var(--border-color-dark) 2px solid;
+	color: #c9d4dd;
 }
 /* delete action in table */
 .deleteLink {
@@ -198,6 +204,12 @@ input + button {
 	box-shadow: 5px 5px 5px -1px rgba(0, 0, 0, 0.42);
 	width: 30%;
 }
+.modal.dark {
+	border: var(--border-color-dark) 2px solid;
+	background-color: var(--primary-color-dark);
+	color: #c9d4dd;
+	box-shadow: 5px 5px 5px -1px rgba(0, 0, 0, 0.42);
+}
 .modal h2 {
 	padding-bottom: 2rem;
 	align-items: center;
@@ -211,6 +223,9 @@ input + button {
 	font-size: var(--font-close-button);
 	font-weight: bold;
 	cursor: pointer;
+}
+.closeBut.dark {
+	color: #c9d4dd;
 }
 button[type="submit"] {
 	float: right;
@@ -251,5 +266,8 @@ button[type="submit"] {
 .deleteName {
 	font-weight: bold;
 	background: none;
+}
+.deleteName.dark {
+	color: #c9d4dd;
 }
 /* ----------modal--------- */

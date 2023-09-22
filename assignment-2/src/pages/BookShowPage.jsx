@@ -31,6 +31,27 @@ const initBooks = [
     topic: "Devops",
     pureName: "the phoenix project"
   },
+  {
+    id:4,
+    name: "Refactoring",
+    author: "Martin Fowler",
+    topic: "Programming",
+    pureName: "refactoring"
+  },
+  {
+    id:5,
+    name: "Designing Data-Intensive Applications",
+    author: "Martin Kleppmann",
+    topic: "Database",
+    pureName: "designing data-intensive applications"
+  },
+  {
+    id:6,
+    name: "The Phoenix Project",
+    author: "Gene Kim",
+    topic: "Devops",
+    pureName: "the phoenix project"
+  },
   
 ]
 
@@ -40,10 +61,11 @@ function BookShowPage() {
   const [books, setBooks] = useState([])
   const [currentView, setCurrentView] = useState([])
   const [searchedBookList, setSearchedBookList] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
   const valueAdd = { isModalAddOpen, setIsModalAddOpen }
   const valueDelete = { deleteItem, setDeleteItem }
   const valueBooks = { books, setBooks, searchedBookList, setSearchedBookList }
-  const valueCurrentView = { currentView, setCurrentView, maxView: 5 }
+  const valueCurrentView = { currentView, setCurrentView,currentPage, setCurrentPage, maxView: 5 }
   useEffect(() => {
     if (localStorage.getItem("currentData") !== null) {
       const curBooks = JSON.parse(localStorage.getItem("currentData"));

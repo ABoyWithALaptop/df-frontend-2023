@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { ModalAddContext } from '../util/context/modalAddContext'
 import { BooksContext } from '../util/context/booksDataContext'
 import { BooksViewContext } from '../util/context/bookViewContext'
+import { ThemeContext } from '../util/context/ThemeContext'
 
 function AddBookModal() {
   const [name, setName] = React.useState('')
@@ -11,6 +12,7 @@ function AddBookModal() {
   const { books, setBooks, searchedBookList, setSearchedBookList } = useContext(BooksContext)
   const { currentView, setCurrentView, maxView } = useContext(BooksViewContext)
   const { setIsModalAddOpen } = modalAddContext
+  const {theme} = useContext(ThemeContext)
   useEffect(() => {
     const handleCloseEsc = (ev) => {
       ev.stopPropagation()
@@ -41,15 +43,15 @@ function AddBookModal() {
 
   return (
     <div className="overlay" id="addBookModalOverlay" onClick={handleClose}>
-      <aside className="modal" id="addBookModal">
-        <button type="button" className="closeBut closeAct" onClick={handleClose}>&times;</button>
+      <aside className={`modal ${theme==='dark'&&"dark"}`} id="addBookModal">
+        <button type="button" className={`closeBut closeAct ${theme==='dark'&&"dark"}`} onClick={handleClose}>&times;</button>
         <h2>Add book</h2>
         <form name="addBookModalForm" onSubmit={handleAdd}>
           <label htmlFor="nameBook">Name</label>
           <input
             type="text"
             id="nameBook"
-            className="stdHeight"
+            className={`stdHeight ${theme==='dark'&&"dark"}`}
             required
             value={name}
             onChange={(e) => setName(e.currentTarget.value)}
@@ -58,7 +60,7 @@ function AddBookModal() {
           <input
             type="text"
             id="authorBook"
-            className="stdHeight"
+            className={`stdHeight ${theme==='dark'&&"dark"}`}
             required
             value={author}
             onChange={(e) => setAuthor(e.currentTarget.value)}
@@ -68,7 +70,7 @@ function AddBookModal() {
             name="topicBook"
             id="topicBook"
             title="topicBook"
-            className="stdHeight"
+            className={`stdHeight ${theme==='dark'&&"dark"}`}
             required
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
@@ -77,7 +79,7 @@ function AddBookModal() {
             <option value="Database" className="topicOption">Database</option>
             <option value="Devops" className="topicOption">Devops</option>
           </select>
-          <button type="submit" className="primary stdHeight">Create</button>
+          <button type="submit" className={`primary stdHeight ${theme==='dark'&&"dark"}`}>Create</button>
         </form>
       </aside>
     </div>
