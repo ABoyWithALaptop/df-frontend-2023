@@ -29,7 +29,7 @@ function TableBooks() {
         
         if (value === "pureName") return (
           <td key={`${item} ${index}`} className={`${theme === 'dark'?"dark" :"" }`}>
-            <a className="deleteLink" onClick={() => handleDelete(item)}>Delete</a>
+            <button className="deleteBut" onClick={() => handleDelete(item)}>Delete</button>
           </td>
         )
         return (

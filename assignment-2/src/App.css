@@ -171,11 +171,13 @@ select.dark {
 	color: #c9d4dd;
 }
 /* delete action in table */
-.deleteLink {
+.deleteBut {
 	color: red;
 	text-decoration: underline;
+	background: none;
+	border: none;
 }
-.deleteLink:hover {
+.deleteBut:hover {
 	cursor: pointer;
 }
 
