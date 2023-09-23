@@ -3,13 +3,14 @@ import { ModalAddContext } from '../util/context/modalAddContext'
 import { BooksContext } from '../util/context/booksDataContext'
 import { BooksViewContext } from '../util/context/bookViewContext'
 import { ThemeContext } from '../util/context/ThemeContext'
+import { removeAccents } from '../util/functions'
 
 function AddBookModal() {
   const [name, setName] = React.useState('')
   const [author, setAuthor] = React.useState('')
   const [topic, setTopic] = React.useState('Database')
   const modalAddContext = useContext(ModalAddContext)
-  const { books, setBooks, searchedBookList, setSearchedBookList } = useContext(BooksContext)
+  const { books, setBooks, searchedBookList, setSearchedBookList, searchValue } = useContext(BooksContext)
   const { currentView, setCurrentView, maxView } = useContext(BooksViewContext)
   const { setIsModalAddOpen } = modalAddContext
   const {theme} = useContext(ThemeContext)
@@ -35,8 +36,10 @@ function AddBookModal() {
     setBooks(newList)
     setIsModalAddOpen(false)
     localStorage.setItem("currentData", JSON.stringify(newList));
-    if (currentView.length < maxView && searchedBookList.length>0) { 
-      setSearchedBookList([...currentView, { id, name, author, topic, pureName: name.toLowerCase() }])
+    if (currentView.length < maxView && searchedBookList.length > 0) { 
+      const item = { id, name, author, topic, pureName: name.toLowerCase()}
+      if(removeAccents(item.pureName).includes(removeAccents(searchValue.toLowerCase())))
+        setSearchedBookList([...currentView, { id, name, author, topic, pureName: name.toLowerCase() }])
     }
   }
 

@@ -5,4 +5,6 @@ export const BooksContext = createContext({
   setBooks: () => { },
   searchedBookList: [],
   setSearchedBookList: () => { },
+  searchValue: '',
+  setSearchValue: () => { },
 })

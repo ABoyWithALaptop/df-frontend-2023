@@ -3,18 +3,17 @@ import { ModalAddContext } from '../../util/context/modalAddContext'
 // import { BooksViewContext } from '../../util/context/bookViewContext';
 import { BooksContext } from '../../util/context/booksDataContext';
 import { ThemeContext } from '../../util/context/ThemeContext';
+import { removeAccents } from '../../util/functions';
 
-function removeAccents(str) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
+
 
 function ControlBar() {
-  const [searchValue, setSearchValue] = React.useState('')
+  // const [searchValue, setSearchValue] = React.useState('')
   const [timeOutId, setTimeOutId] = React.useState(null)
   const modalContext = React.useContext(ModalAddContext)
   const { setIsModalAddOpen } = modalContext
   const booksContext = React.useContext(BooksContext)
-  const { books, setSearchedBookList } = booksContext
+  const { books, setSearchedBookList, searchValue, setSearchValue } = booksContext
   const {theme} = React.useContext(ThemeContext)
 
   useEffect(() => {

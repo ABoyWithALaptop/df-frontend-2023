@@ -62,9 +62,10 @@ function BookShowPage() {
   const [currentView, setCurrentView] = useState([])
   const [searchedBookList, setSearchedBookList] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
+  const [searchValue, setSearchValue] = useState('')
   const valueAdd = { isModalAddOpen, setIsModalAddOpen }
   const valueDelete = { deleteItem, setDeleteItem }
-  const valueBooks = { books, setBooks, searchedBookList, setSearchedBookList }
+  const valueBooks = { books, setBooks, searchedBookList, setSearchedBookList, searchValue, setSearchValue }
   const valueCurrentView = { currentView, setCurrentView,currentPage, setCurrentPage, maxView: 5 }
   useEffect(() => {
     if (localStorage.getItem("currentData") !== null) {
