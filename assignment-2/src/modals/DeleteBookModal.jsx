@@ -46,17 +46,17 @@ function DeleteBookModal() {
   }
 
   return (
-    <div className="overlay" id="deleteBookModalOverlay">
+    <div className="overlay" id="delete-modal-overlay">
 				<aside className={`modal ${theme==='dark'&&"dark"}`} id="deleteBookModal">
-					<button type="button" className={`closeBut closeAct ${theme==='dark'&&"dark"}`} onClick={handleClose}>&times;</button>
+					<button type="button" className={`close-button closeable-element ${theme==='dark'&&"dark"}`} onClick={handleClose}>&times;</button>
 					<article>
 						<h2>Delete book</h2>
-          <p>Do you want to delete <mark className={`deleteName ${theme==='dark'&&"dark"}`}>{deleteItem.name }</mark>.</p>
-						<div id="butGrp">
-							<button type="button" id="deleteBut" className={`stdHeight ${theme==='dark'&&"dark"}`} onClick={handleDelete}>
+          <p>Do you want to delete <mark className={`delete-name ${theme==='dark'&&"dark"}`}>{deleteItem.name }</mark>.</p>
+						<div id="button-group">
+							<button type="button" id="delete-button" className={`standard-height-element ${theme==='dark'&&"dark"}`} onClick={handleDelete}>
 								Delete
 							</button>
-							<button type="button" className={`primary stdHeight closeAct ${theme==='dark'&&"dark"}`} onClick={handleClose}>
+							<button type="button" className={`primary standard-height-element closeable-element ${theme==='dark'&&"dark"}`} onClick={handleClose}>
 								Cancel
 							</button>
 						</div>

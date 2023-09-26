@@ -58,12 +58,12 @@ main.dark {
 	background-color: var(--secondary-color-dark);
 	/* color: #c9d4dd; */
 }
-.stdHeight {
+.standard-height-element {
 	padding: 10px;
 	border-radius: 5px;
 }
 /* handling data*/
-#handleData {
+#handle-data-bar {
 	text-align: right;
 	padding: 20px 0;
 }
@@ -71,7 +71,7 @@ section {
 	padding-inline: 1rem;
 	height: 100%;
 }
-#wrapperTable {
+#wrapper-table {
 	height: 70%;
 }
 /* ------------------common part----------------------- */
@@ -171,13 +171,13 @@ select.dark {
 	color: #c9d4dd;
 }
 /* delete action in table */
-.deleteBut {
+.delete-button {
 	color: red;
 	text-decoration: underline;
 	background: none;
 	border: none;
 }
-.deleteBut:hover {
+.delete-button:hover {
 	cursor: pointer;
 }
 
@@ -216,7 +216,7 @@ select.dark {
 	padding-bottom: 2rem;
 	align-items: center;
 }
-.closeBut {
+.close-button {
 	position: absolute;
 	right: 1rem;
 	top: 0.5rem;
@@ -226,15 +226,15 @@ select.dark {
 	font-weight: bold;
 	cursor: pointer;
 }
-.closeBut.dark {
+.close-button.dark {
 	color: #c9d4dd;
 }
 button[type="submit"] {
 	float: right;
 }
 /* adding modal */
-#addBookModalOverlay input,
-#addBookModalOverlay select {
+#add-book-modal-overlay input,
+#add-book-modal-overlay select {
 	width: 100%;
 	padding: 12px 20px;
 	margin: 8px 0;
@@ -244,32 +244,32 @@ button[type="submit"] {
 	box-sizing: border-box;
 }
 /* delete modal */
-#deleteBut {
+#delete-button {
 	background-color: var(--secondary-button-color);
 	border: 0;
 }
-#deleteBut:hover {
+#delete-button:hover {
 	background-color: var(--secondary-button-color-hover);
 	cursor: pointer;
 }
-#deleteBookModalOverlay article {
+#delete-modal-overlay article {
 	text-align: center;
 }
-#deleteBookModalOverlay p {
+#delete-modal-overlay p {
 	padding: 0 1rem 1rem;
 	/* word-wrap: break-word; */
 	width: 70%;
 	margin: 0 auto;
 }
-#butGrp {
+#button-group {
 	display: flex;
 	justify-content: space-evenly;
 }
-.deleteName {
+.delete-name {
 	font-weight: bold;
 	background: none;
 }
-.deleteName.dark {
+.delete-name.dark {
 	color: #c9d4dd;
 }
 /* ----------modal--------- */

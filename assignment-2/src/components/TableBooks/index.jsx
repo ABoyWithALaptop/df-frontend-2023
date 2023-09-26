@@ -29,7 +29,7 @@ function TableBooks() {
         
         if (value === "pureName") return (
           <td key={`${item} ${index}`} className={`${theme === 'dark'?"dark" :"" }`}>
-            <button className="deleteBut" onClick={() => handleDelete(item)}>Delete</button>
+            <button className="delete-button" onClick={() => handleDelete(item)}>Delete</button>
           </td>
         )
         return (
@@ -42,8 +42,8 @@ function TableBooks() {
   )
 
   return (
-    <div id='wrapperTable'>
-      <table id="searchRes">
+    <div id='wrapper-table'>
+      <table id="book-table">
       <colgroup>
         {propsDataList.map((prop, index) => {
           if (prop === "pureName" || prop ==="id") return null
