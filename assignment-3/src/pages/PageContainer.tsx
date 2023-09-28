@@ -4,7 +4,9 @@ import HeaderBar from '../components/HeaderBar'
 import { ThemeContext } from '../util/context/themeContext'
 
 function PageContainer() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'white')
+  const [theme, setTheme] = useState<string>(
+    localStorage.getItem('theme') || 'white',
+  )
   const value = useMemo(() => ({ theme, setTheme }), [theme])
   return (
     <ThemeContext.Provider value={value}>

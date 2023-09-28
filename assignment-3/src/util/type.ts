@@ -40,3 +40,12 @@ export type PaginationBarType = {
   currentPage: number
   setCurrentPage: number
 }
+export type SwitchButtonType = {
+  isOn: boolean
+  handleToggle: () => void
+  colorOne: string
+  colorButOne: string
+  colorTwo: string
+  colorButTwo: string
+  label: string
+}

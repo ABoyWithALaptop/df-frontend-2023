@@ -1,5 +1,6 @@
 import React from 'react'
 import './ToggleSwitch.css'
+import { SwitchButtonType } from '../../util/type'
 
 const ToggleSwitch = () => {
   return (
@@ -18,7 +19,7 @@ export const Switch = ({
   colorTwo,
   colorButTwo,
   label,
-}) => {
+}: SwitchButtonType) => {
   return (
     <div id="toggleWrapper">
       <label
