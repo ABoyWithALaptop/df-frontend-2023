@@ -7,7 +7,6 @@ export const Switch = ({ isOn, handleToggle, label }: SwitchButtonType) => {
   // const colorTwo = '#70e2fe'
   // const colorButOne = '#F5F3CE'
   // const colorButTwo = '#f28c38'
-  console.log(isOn)
   return (
     <div id="toggleWrapper">
       <label
