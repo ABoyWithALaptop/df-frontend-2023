@@ -3,6 +3,207 @@
 @tailwind utilities;
 
 :root {
+  --primary-button-color: #d2455a;
+  --primary-button-color-dark: #c33232;
+  --primary-button-color-hover: #b40000;
+  --primary-button-color-hover-dark: #da5d6b;
+  --secondary-button-color: #e0e0e0;
+  --secondary-button-color-dark: #e6e6e6;
+  --secondary-button-color-hover: #c2c2c2;
+  --secondary-button-color-hover-dark: #cecece;
+  --primary-color: #fefefe;
+  --primary-color-dark: #282828;
+  --secondary-color: #f7f8f9;
+  --secondary-color-dark: #3f3f3f;
+  --tertiary-color: #c9d4dd;
+  --tertiary-color-dark: #717171;
+  --outlay-color: rgba(152, 152, 152, 0.114);
+  --font-close-button: 2rem;
+  --modal-padding: 2rem;
+}
+#root {
+  height: 100%;
+  width: 100%;
+}
+.App {
+  height: 100%;
+  width: 100%;
+}
+html {
+  height: 100%;
+  width: 100%;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.5s linear;
+}
+/* *.dark {
+	transition: background-color 0.5s linear;
+	background-color: var(--primary-color-dark);
+	border: var(--border-color-dark);
+	color: #c9d4dd;
+} */
+
+/* common part */
+.main {
+  @apply h-[calc(100%_-_3.5rem)] bg-secondary-color dark:bg-secondary-color-dark;
+}
+.standard-height-element {
+  @apply p-3 rounded-lg
+  /* padding: 10px; */
+  /* border-radius: 5px; */;
+}
+/* handling data*/
+#handle-data-bar {
+  @apply text-right py-5;
+}
+section {
+  padding-inline: 1rem;
+  height: 100%;
+}
+#wrapper-table {
+  height: 70%;
+}
+/* ------------------common part----------------------- */
+/* button */
+.primary {
+  background-color: var(--primary-button-color);
+  border: 0;
+
+  color: #fff;
+  width: 80px;
+}
+.primary:hover {
+  background-color: var(--primary-button-color-hover);
+  cursor: pointer;
+}
+.primary.dark {
+  background-color: var(--primary-button-color-dark);
+}
+.primary.dark:hover {
+  background-color: var(--primary-button-color-hover-dark);
+}
+
+/* -----------------button------------------------ */
+/* header */
+.headerBar {
+  @apply flex justify-between items-center py-2 px-4 h-14 border-b-2 border-tertiary-color dark:bg-primary-color-dark dark:text-white dark:border-tertiary-color-dark;
+}
+#avatar {
+  @apply w-8 h-8 rounded-full;
+}
+#personal {
+  @apply flex w-28 whitespace-nowrap items-center gap-5;
+}
+/* -------------------------header----------------------------------- */
+
+/* table */
+.table-cell {
+  @apply text-left p-4 border-2 border-tertiary-color bg-primary-color dark:bg-primary-color-dark dark:border-tertiary-color-dark dark:text-tertiary-color;
+}
+th {
+  font-size: 1.25rem;
+}
+/* select.dark {
+  background-color: var(--primary-color-dark);
+  border: var(--border-color-dark) 2px solid;
+  color: #c9d4dd;
+} */
+/* interact data action in table */
+.interact-button {
+  color: red;
+  text-decoration: underline;
+  background: none;
+  /* border: none; */
+}
+.interact-button:hover {
+  cursor: pointer;
+}
+
+/* ------------------------------table------------------------------------- */
+/* modal */
+.overlay {
+  /* visibility: hidden; */
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  background: var(--outlay-color);
+  backdrop-filter: saturate(50%) blur(05px);
+}
+.modal {
+  padding: var(--modal-padding);
+  display: inline-block;
+  position: relative;
+  border-radius: 5px;
+  border: var(--border-color) 2px solid;
+  background-color: #fff;
+  box-shadow: 5px 5px 5px -1px rgba(0, 0, 0, 0.42);
+  width: 30%;
+}
+.modal.dark {
+  border: var(--border-color-dark) 2px solid;
+  background-color: var(--primary-color-dark);
+  color: #c9d4dd;
+  box-shadow: 5px 5px 5px -1px rgba(0, 0, 0, 0.42);
+}
+.modal h2 {
+  padding-bottom: 2rem;
+  align-items: center;
+}
+.close-button {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  background: none;
+  border: none;
+  font-size: var(--font-close-button);
+  font-weight: bold;
+  cursor: pointer;
+}
+.close-button.dark {
+  color: #c9d4dd;
+}
+button[type='submit'] {
+  float: right;
+}
+/* delete modal */
+#delete-button {
+  background-color: var(--secondary-button-color);
+  border: 0;
+}
+#delete-button:hover {
+  background-color: var(--secondary-button-color-hover);
+  cursor: pointer;
+}
+#delete-modal-overlay article {
+  text-align: center;
+}
+#delete-modal-overlay p {
+  padding: 0 1rem 1rem;
+  /* word-wrap: break-word; */
+  width: 70%;
+  margin: 0 auto;
+}
+#button-group {
+  display: flex;
+  justify-content: space-evenly;
+}
+.delete-name {
+  @apply font-bold bg-transparent dark:text-tertiary-color;
+}
+/* .delete-name.dark {
+  color: #c9d4dd;
+} */
+/* ----------modal--------- */
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +225,4 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */
