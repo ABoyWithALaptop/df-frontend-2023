@@ -1,6 +1,3 @@
-// import { useState } from 'react'
-// import { book } from '../types'
-
 const closeModal = ({
   type,
   setStatus,

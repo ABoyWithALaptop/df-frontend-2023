@@ -54,7 +54,6 @@ function rangePagi(current, sibling, totalPage) {
       .map((_, index) => totalPage - index)
       .reverse()
     range.push(...temp)
-    // range.push(totalPage)
   }
   return range
 }
