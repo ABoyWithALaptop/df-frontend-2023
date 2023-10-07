@@ -39,21 +39,13 @@ html {
   padding: 0;
   transition: background-color 0.5s linear;
 }
-/* *.dark {
-	transition: background-color 0.5s linear;
-	background-color: var(--primary-color-dark);
-	border: var(--border-color-dark);
-	color: #c9d4dd;
-} */
 
 /* common part */
 .main {
   @apply h-[calc(100%_-_3.5rem)] bg-secondary-color dark:bg-secondary-color-dark;
 }
 .standard-height-element {
-  @apply p-3 rounded-lg
-  /* padding: 10px; */
-  /* border-radius: 5px; */;
+  @apply p-3 rounded-lg;
 }
 /* handling data*/
 #handle-data-bar {
@@ -106,12 +98,6 @@ section {
 th {
   font-size: 1.25rem;
 }
-/* select.dark {
-  background-color: var(--primary-color-dark);
-  border: var(--border-color-dark) 2px solid;
-  color: #c9d4dd;
-} */
-/* interact data action in table */
 .interact-button {
   color: red;
   text-decoration: underline;
@@ -125,7 +111,6 @@ th {
 /* ------------------------------table------------------------------------- */
 /* modal */
 .overlay {
-  /* visibility: hidden; */
   display: flex;
   position: absolute;
   top: 0;

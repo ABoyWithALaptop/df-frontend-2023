@@ -24,7 +24,6 @@ export default function Home() {
           <PaginationBar data={books} />
         </section>
       </main>
-
       {isModalAddOpen && <AddBookModal setIsModalAddOpen={setIsModalAddOpen} />}
       {deleteItem && <DeleteBookModal />}
     </>

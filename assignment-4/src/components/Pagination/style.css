@@ -1,13 +1,7 @@
 .pagination-button {
-  /* border: var(--border-color) 1px solid;
-  padding: 10px;
-  background-color: var(--secondary-button-color); */
   @apply p-3 border bg-secondary-button-color border-tertiary-color dark:bg-secondary-button-color-dark dark:border-tertiary-color-dark dark:text-black;
 }
 
 .activePage {
-  @apply bg-secondary-color font-bold dark:bg-secondary-button-color-dark
-  /* background-color: var(--secondary-color); */
-  /* color: #fff; */
-  /* font-weight: bold; */;
+  @apply bg-secondary-color font-bold dark:bg-secondary-button-color-dark;
 }
