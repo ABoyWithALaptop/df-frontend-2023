@@ -31,7 +31,7 @@ function ControlBar({
     }
   }, [books, searchValue, setSearchedBookList])
 
-  const handleKeydown = (e) => {
+  const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
       timeOutId.current = undefined
       const dataShow = books.filter((item) =>
