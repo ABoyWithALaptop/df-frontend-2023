@@ -3,7 +3,7 @@ import { useTheme } from 'next-themes'
 import { ModalDeleteContext } from '../../utils/context/modalDeleteContext'
 import { BooksContext } from '../../utils/context/booksDataContext'
 import { BooksViewContext } from '../../utils/context/bookViewContext'
-import { closeModal } from '../../utils/functions'
+import { closeModalClick, closeModalEsc } from '../../utils/functions'
 
 function DeleteBookModal() {
   const modalDeleteContext = React.useContext(ModalDeleteContext)
@@ -13,25 +13,18 @@ function DeleteBookModal() {
     useContext(BooksViewContext)
   const { deleteItem, setDeleteItem } = modalDeleteContext
   const { theme } = useTheme()
-  const closeModalData = {
-    type: '',
-    setStatus: setDeleteItem as (status: boolean | undefined) => void,
-  }
-
-  const handleCloseByEsc = closeModal({
-    ...closeModalData,
-    type: 'esc',
-  })
   useEffect(() => {
-    document.addEventListener('keydown', (ev) => handleCloseByEsc(ev))
+    document.addEventListener('keydown', (ev) =>
+      closeModalEsc(ev, setDeleteItem as (status: boolean | undefined) => void),
+    )
     return () =>
-      document.removeEventListener('keydown', (ev) => handleCloseByEsc(ev))
-  }, [handleCloseByEsc])
-
-  const handleClose = closeModal({
-    ...closeModalData,
-    type: 'click',
-  })
+      document.removeEventListener('keydown', (ev) =>
+        closeModalEsc(
+          ev,
+          setDeleteItem as (status: boolean | undefined) => void,
+        ),
+      )
+  }, [setDeleteItem])
   const handleDelete = () => {
     const { id } = deleteItem!
     const newList = books.filter((item) => item.id !== id)
@@ -54,7 +47,10 @@ function DeleteBookModal() {
       className="overlay"
       id="delete-modal-overlay"
       onClick={(ev) => {
-        handleClose(ev)
+        closeModalClick(
+          ev,
+          setDeleteItem as (status: boolean | undefined) => void,
+        )
       }}
       role="presentation"
     >
@@ -65,7 +61,12 @@ function DeleteBookModal() {
         <button
           type="button"
           className="close-button closeable-element"
-          onClick={handleClose}
+          onClick={(ev) => {
+            closeModalClick(
+              ev,
+              setDeleteItem as (status: boolean | undefined) => void,
+            )
+          }}
         >
           &times;
         </button>
@@ -89,7 +90,12 @@ function DeleteBookModal() {
               className={`primary standard-height-element closeable-element ${
                 theme === 'dark' && 'dark'
               }`}
-              onClick={handleClose}
+              onClick={(ev) => {
+                closeModalClick(
+                  ev,
+                  setDeleteItem as (status: boolean | undefined) => void,
+                )
+              }}
             >
               Cancel
             </button>

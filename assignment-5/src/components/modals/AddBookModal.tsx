@@ -6,8 +6,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ErrorMessage } from '@hookform/error-message'
 import { BooksContext } from '../../utils/context/booksDataContext'
 import { BooksViewContext } from '../../utils/context/bookViewContext'
-import { removeAccents } from '../../utils/functions'
-import closeModal from '../../utils/hooks/closeModalHook'
+import {
+  removeAccents,
+  closeModalClick,
+  closeModalEsc,
+} from '../../utils/functions'
 import { book } from '../../utils/types'
 import { ModalAddAndEditContext } from '../../utils/context/modalAddContext'
 
@@ -36,24 +39,35 @@ function AddOrEditBookModal({
     useContext(BooksContext)
   const { currentView, maxView } = useContext(BooksViewContext)
   const { theme } = useTheme()
-  const closeModalData = {
-    type: '',
-    setStatus: setIsModalOpen as (status: boolean | undefined) => void,
-  }
-  const handleCloseEsc = closeModal({
-    ...closeModalData,
-    type: 'esc',
-  })
+  // const closeModalData = {
+  //   type: '',
+  //   setStatus: setIsModalOpen as (status: boolean | undefined) => void,
+  // }
+  // const handleCloseEsc = closeModal({
+  //   ...closeModalData,
+  //   type: 'esc',
+  // })
 
   useEffect(() => {
-    document.addEventListener('keydown', handleCloseEsc)
-    return () => document.removeEventListener('keydown', handleCloseEsc)
-  }, [handleCloseEsc])
+    document.addEventListener('keydown', (ev) =>
+      closeModalEsc(
+        ev,
+        setIsModalOpen as (status: boolean | undefined) => void,
+      ),
+    )
+    return () =>
+      document.removeEventListener('keydown', (ev) =>
+        closeModalEsc(
+          ev,
+          setIsModalOpen as (status: boolean | undefined) => void,
+        ),
+      )
+  }, [setIsModalOpen])
 
-  const handleClose = closeModal({
-    ...closeModalData,
-    type: 'click',
-  })
+  // const handleClose = closeModal({
+  //   ...closeModalData,
+  //   type: 'click',
+  // })
   const processSubmit: SubmitHandler<schemaType> = (data) => {
     let newList: book[]
     const { name, author, topic } = data
@@ -118,7 +132,10 @@ function AddOrEditBookModal({
       className="overlay"
       id="add-book-modal-overlay"
       onClick={(ev) => {
-        if (ev.currentTarget === ev.target) handleClose(ev)
+        closeModalClick(
+          ev,
+          setIsModalOpen as (status: boolean | undefined) => void,
+        )
       }}
       role="presentation"
     >
@@ -131,7 +148,12 @@ function AddOrEditBookModal({
           className={`close-button closeable-element ${
             theme === 'dark' && 'dark'
           }`}
-          onClick={handleClose}
+          onClick={(ev) => {
+            closeModalClick(
+              ev,
+              setIsModalOpen as (status: boolean | undefined) => void,
+            )
+          }}
         >
           &times;
         </button>

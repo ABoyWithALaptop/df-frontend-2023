@@ -1,27 +1,22 @@
 export function removeAccents(str: string): string {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
-export const closeModal = ({
-  type,
-  setStatus,
-}: {
-  type: 'esc' | 'click'
-  setStatus: (params: boolean | undefined) => void
-}) => {
-  if (type === 'esc') {
-    return (ev: KeyboardEvent) => {
-      if (ev.key === 'Escape') {
-        setStatus(undefined)
-      }
-    }
+export const closeModalClick = (
+  ev: React.MouseEvent,
+  setStatus: (params: boolean | undefined) => void,
+) => {
+  ev.preventDefault()
+  ev.stopPropagation()
+  if (ev.currentTarget === ev.target) {
+    setStatus(false)
   }
-
-  return (ev: React.MouseEvent) => {
-    ev.preventDefault()
-    ev.stopPropagation()
-    if (ev.currentTarget === ev.target) {
-      setStatus(false)
-    }
+}
+export const closeModalEsc = (
+  ev: KeyboardEvent,
+  setStatus: (params: boolean | undefined) => void,
+) => {
+  if (ev.key === 'Escape') {
+    setStatus(undefined)
   }
 }
 
