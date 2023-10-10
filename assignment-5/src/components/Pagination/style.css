@@ -1,0 +1,7 @@
+.pagination-button {
+  @apply p-3 border bg-secondary-button-color border-tertiary-color dark:bg-secondary-button-color-dark dark:border-tertiary-color-dark dark:text-black;
+}
+
+.activePage {
+  @apply bg-secondary-color font-bold dark:bg-secondary-button-color-dark;
+}

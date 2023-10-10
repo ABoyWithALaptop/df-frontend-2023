@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
-import { ModalAddContext } from '../../util/context/modalAddContext'
-import { BooksContext } from '../../util/context/booksDataContext'
-import { ThemeContext } from '../../util/context/themeContext'
-import { removeAccents } from '../../util/functions'
+import { useTheme } from 'next-themes'
+import { BooksContext } from '../../utils/context/booksDataContext'
+import { removeAccents } from '../../utils/functions'
 
-function ControlBar() {
-  const modalContext = React.useContext(ModalAddContext)
-  const { setIsModalAddOpen } = modalContext
+function ControlBar({
+  setIsModalOpen,
+}: {
+  setIsModalOpen: (status: boolean) => void
+}) {
   const booksContext = React.useContext(BooksContext)
   const { books, setSearchedBookList, searchValue, setSearchValue } =
     booksContext
-  const { theme } = React.useContext(ThemeContext)
+  const { theme } = useTheme()
   const timeOutId = React.useRef<NodeJS.Timeout | undefined>(undefined)
 
   useEffect(() => {
@@ -41,6 +42,7 @@ function ControlBar() {
       setSearchedBookList(dataShow.length > 0 ? dataShow : undefined)
     }
   }
+
   return (
     <div id="handle-data-bar">
       <input
@@ -48,7 +50,7 @@ function ControlBar() {
         placeholder="Search book"
         title="search"
         id="searchBar"
-        className={`standard-height-element ${theme === 'dark' ? 'dark' : ''}`}
+        className="standard-height-element border-2 border-primary-color-dark rounded-md px-2 py-1 text-sm mr-3 dark:bg-primary-color-dark dark:border-tertiary-color-dark "
         onChange={(e) => setSearchValue(e.target.value)}
         onKeyDown={(e) => {
           handleKeydown(e)
@@ -58,10 +60,10 @@ function ControlBar() {
       <button
         id="add"
         type="button"
-        className={`primary standard-height-element ${
+        className={`primary standard-height-element text-xs ${
           theme === 'dark' ? 'dark' : ''
         }`}
-        onClick={() => setIsModalAddOpen(true)}
+        onClick={() => setIsModalOpen(true)}
       >
         Add book
       </button>

@@ -2,42 +2,13 @@ import React, { useEffect } from 'react'
 import PaginationBar from './PaginationBar'
 import { BooksViewContext } from '../../util/context/bookViewContext'
 import { BooksContext } from '../../util/context/booksDataContext'
-// import { book } from '../../util/type'
 
 function PaginationWrapper({ children, data }) {
-  // const [currentPage, setCurrentPage] = React.useContext(1)
   const bookViewContext = React.useContext(BooksViewContext)
   const booksContext = React.useContext(BooksContext)
   const { setCurrentView, currentPage, setCurrentPage, maxView } =
     bookViewContext
   const { searchedBookList } = booksContext
-  // const maxView = 3
-  // const handle = useCallback(() => {
-  //   if (searchedBookList === null) {
-  //     setCurrentView([])
-  //   } else if (searchedBookList.length > 0) {
-  //     setCurrentPage(1)
-  //     const dataShow = searchedBookList.slice(
-  //       (currentPage - 1) * maxView,
-  //       currentPage * maxView,
-  //     )
-
-  //     setCurrentView(dataShow)
-  //   } else {
-  //     const dataShow = data.slice(
-  //       (currentPage - 1) * maxView,
-  //       currentPage * maxView,
-  //     )
-  //     setCurrentView(dataShow)
-  //   }
-  // }, [
-  //   currentPage,
-  //   data,
-  //   searchedBookList,
-  //   maxView,
-  //   setCurrentPage,
-  //   setCurrentView,
-  // ])
   useEffect(() => {
     if (searchedBookList === undefined) {
       setCurrentView([])

@@ -1,50 +1,45 @@
-# Form Handling
+# NextJS & Tailwind
 
-Improve our [Assignment 04's Next.js application](../assignment-4/) application by adding an "Edit" feature for book details. Also, integrate a user-friendly and secure login page while ensuring a rigorous form validation system throughout the application. This enhancement aims to bolster the user experience and the overall security of the platform.
+Adapt the CMS Bookstore interface from [Assignment 02's React Project](../assignment-2/) into a NextJS application. This transition will highlight the flexibility and power of the framework. Enhance the UI using TailwindCSS to ensure a responsive and modern design.
 
 <p align="center">
-  <img src="../assets/bookstore-form.png">
+  <img src="../assets/bookstore-next.png">
 </p>
 
 ## Requirements
 
-1. Use the functionalities from [Assignment 04](../assignment-4/) as a foundation.
-2. Augment the book details page with an "Edit" button.
-3. The 'Edit' button should trigger a modal window containing a pre-filled form with the current book details. This allows users to update the information and save changes.
-4. Introduce a login page with a form that captures:
-   - Email
-   - Password
-5. All forms should have validation and user-friendly error indicators.
-
-### Validation rules
-
-**Book Creation/Editing:**
-
-- Book name: Minimum of 5 characters, required.
-- Author name: Only letters and spaces, required.
-- Book topic: Must select from available options, required.
-
-**Login Form:**
-
-- Email: Valid email pattern, required.
-- Password: Minimum of 8 characters with at least 1 uppercase and 1 symbol, required.
+1. Use the functionalities from [Assignment 02](../assignment-2/) as a foundation. Transform the project to utilize the power of NextJS.
+2. Employ TailwindCSS exclusively for the project's styling needs.
+3. View a book's detail by clicking its "View" button. This should navigate the user to **`/book/:id`**.
+4. Implement a `404 page` for invalid routes. If a user attempts to access a non-existent book id, display a `Not Found` UI.
+5. Within the book detail page, incorporate a "Delete" button. Once a book is deleted successfully, redirect users back to the main listing page and ensure the deleted book is no longer displayed.
 
 ### Deliverables
 
-- Well-crafted Typescript NextJS Project with fully formatted, all the necessary components, functionalities, and error-free.
-- Ensure that form UI reflect an error state and display an appropriate message when an error occurs.
-- Ensure your code is fully formatted and adheres to comprehensive coding conventions.
-- Ensure the project is deployable and provide a demo link for review.
-- **Bonus**: Implement a [Password Strength Meter](https://www.passwordmonster.com/). For password fields, display a dynamic strength meter that updates based on password complexity.
+- A well-structured NextJS project written in TypeScript, incorporating all necessary components and functionalities. Ensure that TailwindCSS is utilized effectively for all styling aspects.
+- The code should be fully formatted, following best practices and conventions, with ESLint and TypeScript rules from [Assignment 03](../assignment-3/).
+- Ensure the project can be deployed. Provide a demo link for review. While you have the freedom to choose any deployment platform, our recommended platform is Vercel. (Refer to the provided [tutorial](https://www.notion.so/Steps-to-Deploy-Your-Assignments-Using-Vercel-cff73a5fe1024e47a4f512bbb7f93c19?pvs=21) on using Vercel for deployment guidance).
+- **Bonus:** Integrate a light and dark mode toggle for the UI using TailwindCSS.
+- **Bonus**: for an enhanced user experience, persist the search query and pagination state in the URL. For instance, if a user searches for a book with the keyword "abc" and is on page 2 of the results, the URL should reflect **`/?q=abc&page=2`**.
 
 ### What Are We Looking For?
 
-- Effective use of form hooks and robust validation techniques.
-- Full implementation of all features listed in the requirements.
-- Demonstrated improvement and incorporation of feedback received from previous assignments.
+- Proper use of NextJS framework & TailwindCSS.
+- Full implementation of all listed features.
+- Improvement from feedback from your previous assignments
 
 ## Submission
 
-- Ensure all assignment code is placed within the **`/assignment-5`** directory. You should transfer all of the application code from your Assignment 04 and relocate it to this folder.
-- The final submission deadline is **08/10/2023**.
-- After finalizing and ensuring a deployable demo, open a Github issue in your forked repository titled "**Submission for Assignment 5.**" Include the demo link in the description.
+- Begin with the template found in the assignment folder. This project should be initialized using NextJS and TailwindCSS. To guide you, you can use the following commands:
+
+    ```bash
+    # Install packages
+    pnpm install
+    # Run the app in development mode
+    pnpm dev
+    # Build the app for production
+    pnpm build
+    ```
+
+- Ensure all assignment code is placed within the **`/assignment-4`** directory. The final submission deadline is **06/10/2023**.
+- After finalizing and ensuring a deployable demo, open a Github issue in your forked repository titled "**Submission for Assignment 4.**" Include the demo link in the description.

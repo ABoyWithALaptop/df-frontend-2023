@@ -1,8 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './style.css'
-import { ThemeContext } from '../../util/context/themeContext'
+import { BooksViewContext } from '../../utils/context/bookViewContext'
+import { BooksContext } from '../../utils/context/booksDataContext'
+import { book } from '../../utils/types'
 
-function rangePagi(current, sibling, totalPage) {
+function rangePagi(current: number, sibling: number, totalPage: number) {
   const range: Array<number | string> = [1]
   const lastPageInCurrentInteractRange = current + sibling
 
@@ -58,20 +60,59 @@ function rangePagi(current, sibling, totalPage) {
 }
 
 function PaginationBar({
-  totalPage,
-  siblingCount = 1,
-  currentPage,
-  setCurrentPage,
+  data,
+  neighbor = 1,
+}: {
+  data: book[]
+  neighbor?: number
 }) {
+  const siblingCount = neighbor
+  const bookViewContext = useContext(BooksViewContext)
+  const booksContext = useContext(BooksContext)
+  const { setCurrentView, currentPage, setCurrentPage, maxView } =
+    bookViewContext
+  const { searchedBookList } = booksContext
+  useEffect(() => {
+    if (searchedBookList === undefined) {
+      setCurrentView([])
+    } else if (searchedBookList.length > 0) {
+      setCurrentPage(1)
+      const dataShow = searchedBookList.slice(
+        (currentPage - 1) * maxView,
+        currentPage * maxView,
+      )
+
+      setCurrentView(dataShow)
+    } else {
+      const dataShow = data.slice(
+        (currentPage - 1) * maxView,
+        currentPage * maxView,
+      )
+      setCurrentView(dataShow)
+    }
+  }, [
+    currentPage,
+    data,
+    searchedBookList,
+    maxView,
+    setCurrentView,
+    setCurrentPage,
+  ])
+  let totalPage = 0
+  if (searchedBookList === undefined) totalPage = 1
+  else
+    totalPage =
+      searchedBookList.length > 0
+        ? Math.ceil(searchedBookList.length / maxView)
+        : Math.ceil(data.length / maxView)
   const DOTS = '...'
   const visiblePage = rangePagi(currentPage, siblingCount, totalPage)
-  const { theme } = useContext(ThemeContext)
 
   return (
-    <div className="pagination-wrapper">
+    <div className="pagination-wrapper float-right my-3">
       <button
         disabled={currentPage === 1}
-        className={`pagination-button ${theme === 'dark' ? 'dark' : ''}`}
+        className="pagination-button  disabled:opacity-50 dark:disabled:text-gray-400"
         onClick={() => setCurrentPage(currentPage - 1)}
       >
         Prev
@@ -80,11 +121,11 @@ function PaginationBar({
         return (
           <button
             key={index}
-            onClick={() => setCurrentPage(page)}
             disabled={page === DOTS}
+            onClick={() => setCurrentPage(page as number)}
             className={`pagination-button ${
               page === currentPage ? 'activePage' : ''
-            } ${theme === 'dark' ? 'dark' : ''}`}
+            }  disabled:opacity-50 dark:disabled:text-gray-400`}
           >
             {page}
           </button>
@@ -92,7 +133,7 @@ function PaginationBar({
       })}
       <button
         disabled={currentPage === totalPage}
-        className={`pagination-button ${theme === 'dark' ? 'dark' : ''}`}
+        className="pagination-button disabled:opacity-50 dark:disabled:text-gray-400"
         onClick={() => setCurrentPage(currentPage + 1)}
       >
         Next
