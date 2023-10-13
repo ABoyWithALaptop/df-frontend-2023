@@ -7,8 +7,8 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'next',
-    'next/core-web-vitals',
+    // 'next',
+    // 'next/core-web-vitals',
   ],
   ignorePatterns: [
     'node_modules/',

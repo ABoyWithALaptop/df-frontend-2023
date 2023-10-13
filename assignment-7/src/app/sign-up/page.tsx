@@ -2,12 +2,12 @@
 
 import { ErrorMessage } from '@hookform/error-message'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { signup } from '../../api/generated/auth/auth'
-import { toast } from 'react-toastify'
 
 type passwordStrengthType = {
   length: boolean

@@ -6,61 +6,53 @@
  * OpenAPI spec version: 1.0
  */
 import axios from 'axios'
-import type {
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosError
-} from 'axios'
+import type { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import useSwr from 'swr'
-import type {
-  SWRConfiguration,
-  Key
-} from 'swr'
-import type {
-  TopicsResponse,
-  ErrorResponse
-} from '.././modal'
+import type { SWRConfiguration, Key } from 'swr'
+import type { TopicsResponse, ErrorResponse } from '../modal'
 
-
-  
-  /**
+/**
  * Get all topics
  * @summary Get all topics
  */
 export const getTopics = (
-     options?: AxiosRequestConfig
- ): Promise<AxiosResponse<TopicsResponse>> => {
-    return axios.get(
-      `/topics`,options
-    );
-  }
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<TopicsResponse>> => {
+  return axios.get(`/topics`, options)
+}
 
+export const getGetTopicsKey = () => [`/topics`] as const
 
-export const getGetTopicsKey = () => [`/topics`] as const;
-
-    
-export type GetTopicsQueryResult = NonNullable<Awaited<ReturnType<typeof getTopics>>>
+export type GetTopicsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getTopics>>
+>
 export type GetTopicsQueryError = AxiosError<ErrorResponse>
 
 /**
  * @summary Get all topics
  */
-export const useGetTopics = <TError = AxiosError<ErrorResponse>>(
-  options?: { swr?:SWRConfiguration<Awaited<ReturnType<typeof getTopics>>, TError> & { swrKey?: Key, enabled?: boolean }, axios?: AxiosRequestConfig }
-
-  ) => {
-
-  const {swr: swrOptions, axios: axiosOptions} = options ?? {}
+export const useGetTopics = <TError = AxiosError<ErrorResponse>>(options?: {
+  swr?: SWRConfiguration<Awaited<ReturnType<typeof getTopics>>, TError> & {
+    swrKey?: Key
+    enabled?: boolean
+  }
+  axios?: AxiosRequestConfig
+}) => {
+  const { swr: swrOptions, axios: axiosOptions } = options ?? {}
 
   const isEnabled = swrOptions?.enabled !== false
-    const swrKey = swrOptions?.swrKey ?? (() => isEnabled ? getGetTopicsKey() : null);
-  const swrFn = () => getTopics(axiosOptions);
+  const swrKey =
+    swrOptions?.swrKey ?? (() => (isEnabled ? getGetTopicsKey() : null))
+  const swrFn = () => getTopics(axiosOptions)
 
-  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
+  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(
+    swrKey,
+    swrFn,
+    swrOptions,
+  )
 
   return {
     swrKey,
-    ...query
+    ...query,
   }
 }
-

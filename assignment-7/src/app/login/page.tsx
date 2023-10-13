@@ -1,18 +1,16 @@
 'use client'
 
 import { ErrorMessage } from '@hookform/error-message'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-toastify'
-import { redirect, useRouter } from 'next/navigation'
-import { LoginContext } from '../../utils/context/userContext'
 import Link from 'next/link'
 import { setCookie } from 'nookies'
+import { redirect } from 'next/navigation'
+import { LoginContext } from '../../utils/context/userContext'
 import { login } from '../../api/generated/auth/auth'
-import { useGetMe } from '../../api/generated/user/user'
-import { mutate } from 'swr'
 
 const LoginSchema = z.object({
   email: z.string().min(1, 'email is required').email(),
@@ -47,7 +45,6 @@ function LoginPage() {
       })
       .catch((err) => {
         setSubmitting(false)
-        console.log(err)
         toast.error(`login failed: ${err.response.data.message}`)
       })
   }

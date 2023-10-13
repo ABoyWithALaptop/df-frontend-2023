@@ -2,7 +2,7 @@
 
 import React, { useContext, useEffect } from 'react'
 
-import { useRouter, redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import ControlBar from '../components/SearchingBar'
 import TableBooks from '../components/TableBooks'
 import AddOrEditBookModal from '../components/modals/AddBookModal'
@@ -22,33 +22,27 @@ export default function Home() {
     ModalAddAndEditContext,
   )
   const { loginStatus } = useContext(LoginContext)
-  const { data: booksData, isLoading, isValidating } = useGetBooks()
+  const { data: booksData, isLoading } = useGetBooks()
 
   if (!loginStatus) {
     redirect('/login')
   }
   useEffect(() => {
     setBooks(booksData?.data?.data || [])
-  }, [booksData])
-  return (
+  }, [booksData, setBooks])
+  return isLoading ? (
+    <Loading />
+  ) : (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <main className="main">
-            <section>
-              <ControlBar setIsModalOpen={setIsModalOpen} />
-              <TableBooks />
-              <PaginationBar data={books} />
-            </section>
-          </main>
-          {isModalOpen && (
-            <AddOrEditBookModal setIsModalOpen={setIsModalOpen} />
-          )}
-          {deleteItem && <DeleteBookModal />}
-        </>
-      )}
+      <main className="main">
+        <section>
+          <ControlBar setIsModalOpen={setIsModalOpen} />
+          <TableBooks />
+          <PaginationBar data={books} />
+        </section>
+      </main>
+      {isModalOpen && <AddOrEditBookModal setIsModalOpen={setIsModalOpen} />}
+      {deleteItem && <DeleteBookModal />}
     </>
   )
 }

@@ -2,23 +2,25 @@
 
 import Link from 'next/link'
 import { useContext } from 'react'
+import { redirect } from 'next/navigation'
 import { ModalDeleteContext } from '../../../utils/context/modalDeleteContext'
-import { BooksContext } from '../../../utils/context/booksDataContext'
 import DeleteBookModal from '../../../components/modals/DeleteBookModal'
 import { useGetBook } from '../../../api/generated/book/book'
-import { redirect } from 'next/navigation'
 import { LoginContext } from '../../../utils/context/userContext'
+import Loading from '../../../components/loading'
 
 export default function DetailPage({ params }: { params: { id: string } }) {
   const { deleteItem, setDeleteItem } = useContext(ModalDeleteContext)
   const { loginStatus } = useContext(LoginContext)
   const { id } = params
-  const { data: dataCurrentBook } = useGetBook(Number(id))
+  const { data: dataCurrentBook, isLoading } = useGetBook(Number(id))
   const currentBookDetail = dataCurrentBook?.data?.data
   if (!loginStatus) {
     redirect('/login')
   }
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <main className="main">
       <div className="">
         <button className="interact-button">

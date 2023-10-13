@@ -4,12 +4,12 @@ import React, { useContext } from 'react'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
+import { destroyCookie } from 'nookies'
+import { redirect } from 'next/navigation'
 import { Switch } from '../SwitchButton/ToggleSwitch'
 import avatar from '../../utils/avatar.jpg'
 import { LoginContext } from '../../utils/context/userContext'
-import { getMe, useGetMe } from '../../api/generated/user/user'
-import { destroyCookie } from 'nookies'
-import { redirect } from 'next/navigation'
+import { useGetMe } from '../../api/generated/user/user'
 
 function HeaderBar() {
   const { theme, setTheme } = useTheme()
