@@ -69,7 +69,7 @@ function PaginationBar({
   const siblingCount = neighbor
   const bookViewContext = useContext(BooksViewContext)
   const booksContext = useContext(BooksContext)
-  const { currentView, setCurrentView, currentPage, setCurrentPage, maxView } =
+  const { setCurrentView, currentPage, setCurrentPage, maxView } =
     bookViewContext
   const { searchedBookList } = booksContext
   useEffect(() => {

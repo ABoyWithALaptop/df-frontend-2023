@@ -10,8 +10,8 @@ const override: CSSProperties = {
 }
 
 function Loading() {
-  let [loading, setLoading] = useState(true)
-  let [color, setColor] = useState('#ffffff')
+  const [loading] = useState(true)
+  const [color] = useState('#ffffff')
 
   return (
     <main className="main">

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useTheme } from 'next-themes'
+import { mutate } from 'swr'
 import { ModalDeleteContext } from '../../utils/context/modalDeleteContext'
 import { BooksContext } from '../../utils/context/booksDataContext'
 import { BooksViewContext } from '../../utils/context/bookViewContext'
@@ -9,12 +10,10 @@ import {
   getGetBookKey,
   getGetBooksKey,
 } from '../../api/generated/book/book'
-import { mutate } from 'swr'
 
 function DeleteBookModal() {
   const modalDeleteContext = React.useContext(ModalDeleteContext)
-  const { books, setBooks, searchedBookList, setSearchedBookList } =
-    useContext(BooksContext)
+  const { searchedBookList, setSearchedBookList } = useContext(BooksContext)
   const { currentView, currentPage, setCurrentPage, maxView } =
     useContext(BooksViewContext)
   const { deleteItem, setDeleteItem } = modalDeleteContext

@@ -18,38 +18,34 @@ export default function DetailPage({ params }: { params: { id: string } }) {
   if (!loginStatus) {
     redirect('/login')
   }
-  return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <main className="main">
-          <div className="">
-            <button className="interact-button">
-              <Link href="/">Back</Link>
-            </button>
-            <div>
-              <h1 className="text-3xl">DetailPage</h1>
-              <h2 className="text-2xl py-5">{currentBookDetail?.name}</h2>
-              <h3 className="text-xl">
-                <span className="font-bold">Author: </span>
-                {currentBookDetail?.author}
-              </h3>
-              <h4 className="text-lg pb-4">
-                <span className="font-bold">Topic: </span>
-                {currentBookDetail?.topic?.name}
-              </h4>
-            </div>
-            <button
-              className="interact-button"
-              onClick={() => setDeleteItem(currentBookDetail)}
-            >
-              Delete
-            </button>
-          </div>
-          {deleteItem && <DeleteBookModal />}
-        </main>
-      )}
-    </>
+  return isLoading ? (
+    <Loading />
+  ) : (
+    <main className="main">
+      <div className="">
+        <button className="interact-button">
+          <Link href="/">Back</Link>
+        </button>
+        <div>
+          <h1 className="text-3xl">DetailPage</h1>
+          <h2 className="text-2xl py-5">{currentBookDetail?.name}</h2>
+          <h3 className="text-xl">
+            <span className="font-bold">Author: </span>
+            {currentBookDetail?.author}
+          </h3>
+          <h4 className="text-lg pb-4">
+            <span className="font-bold">Topic: </span>
+            {currentBookDetail?.topic?.name}
+          </h4>
+        </div>
+        <button
+          className="interact-button"
+          onClick={() => setDeleteItem(currentBookDetail)}
+        >
+          Delete
+        </button>
+      </div>
+      {deleteItem && <DeleteBookModal />}
+    </main>
   )
 }

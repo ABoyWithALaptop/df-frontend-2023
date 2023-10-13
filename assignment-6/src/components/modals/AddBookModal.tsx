@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ErrorMessage } from '@hookform/error-message'
+import { mutate } from 'swr'
 import { BooksViewContext } from '../../utils/context/bookViewContext'
 import { closeModalClick, closeModalEsc } from '../../utils/functions'
 import { ModalAddAndEditContext } from '../../utils/context/modalAddContext'
@@ -12,7 +13,6 @@ import {
   getGetBooksKey,
   updateBook,
 } from '../../api/generated/book/book'
-import { mutate } from 'swr'
 
 const schema = z.object({
   name: z.string().min(1, 'name is required'),
@@ -71,7 +71,7 @@ function AddOrEditBookModal({
       updateBook(editItem.id, {
         name: data.name,
         author: data.author,
-        topicId: parseInt(data.topic),
+        topicId: parseInt(data.topic, 10),
       }).then(() => {
         const key = getGetBooksKey()
         mutate(key)
@@ -82,7 +82,7 @@ function AddOrEditBookModal({
       createBook({
         name: data.name,
         author: data.author,
-        topicId: parseInt(data.topic),
+        topicId: parseInt(data.topic, 10),
       }).then(() => {
         const key = getGetBooksKey()
         if (currentPage === 0) setCurrentPage(1)
@@ -184,7 +184,7 @@ function AddOrEditBookModal({
 
           <button
             type="submit"
-            className={`primary standard-height-element`}
+            className="primary standard-height-element"
             onClick={(ev) => ev.stopPropagation()}
           >
             {editItem ? 'Edit' : 'create'}

@@ -1,14 +1,14 @@
 'use client'
 
-import { PropsWithChildren, useEffect, useMemo, useState } from 'react'
+import { PropsWithChildren, useMemo, useState } from 'react'
+import axios from 'axios'
+import { parseCookies } from 'nookies'
 import { ModalAddAndEditContext } from './modalAddContext'
 import { ModalDeleteContext } from './modalDeleteContext'
 import { BooksViewContext } from './bookViewContext'
 import { BooksContext } from './booksDataContext'
 import { book } from '../types'
 import { LoginContext } from './userContext'
-import axios from 'axios'
-import { parseCookies } from 'nookies'
 
 export const ContextProvider = ({ children }: PropsWithChildren) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -50,9 +50,8 @@ export const ContextProvider = ({ children }: PropsWithChildren) => {
     }
   }, [books, searchedBookList, searchValue])
   const [loginStatus, setLoginStatus] = useState<boolean>(
-    parseCookies().Bearer ? true : false,
+    !!parseCookies().Bearer,
   )
-  const [emailName, setEmailName] = useState<string>('')
   const valueLogin = useMemo(
     () => ({ loginStatus, setLoginStatus }),
     [loginStatus],
