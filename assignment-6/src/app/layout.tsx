@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import HeaderBar from '../components/HeaderBar'
 import { ThemeProvider } from './theme-provider'
 import { ContextProvider } from '../utils/context'
-import Loading from '../components/loading'
 
 const inter = DM_Sans({ subsets: ['latin'] })
 

@@ -6,6 +6,9 @@ module.exports = {
       target: "./src/api/generated/bookStore.ts",
       schemas: "./src/api/generated/modal",
       client: "swr",
+    },
+    hooks: {
+      afterAllFilesWrite: 'eslint ./src/api --ext .ts,.tsx,.js --fix', // run lint fix after all files are written
     }
   }
 }

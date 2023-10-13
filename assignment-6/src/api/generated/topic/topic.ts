@@ -9,7 +9,7 @@ import axios from 'axios'
 import type { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import useSwr from 'swr'
 import type { SWRConfiguration, Key } from 'swr'
-import type { TopicsResponse, ErrorResponse } from '.././modal'
+import type { TopicsResponse, ErrorResponse } from '../modal'
 
 /**
  * Get all topics

@@ -12,7 +12,7 @@ import type {
   LoginRequest,
   MessageResponse,
   SignupRequest,
-} from '.././modal'
+} from '../modal'
 
 /**
  * Login to portal by email

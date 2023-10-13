@@ -16,7 +16,7 @@ import type {
   UpdateUserRequest,
   MessageResponse,
   UpdatePasswordRequest,
-} from '.././modal'
+} from '../modal'
 
 /**
  * Retrieve my information

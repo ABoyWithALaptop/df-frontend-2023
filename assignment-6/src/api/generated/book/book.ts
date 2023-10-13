@@ -17,7 +17,7 @@ import type {
   CreateBookRequest,
   UpdateBookRequest,
   MessageResponse,
-} from '.././modal'
+} from '../modal'
 
 /**
  * Get list of books
