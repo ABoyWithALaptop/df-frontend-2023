@@ -1,0 +1,36 @@
+#toggleWrapper {
+  display: flex;
+  gap: 5px;
+  justify-items: center;
+  align-items: center;
+}
+.switch-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 50px;
+  height: 20px;
+  border-radius: 100px;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.switch-button {
+  @apply absolute top-[2px] left-[2px] w-4 h-4 rounded-full shadow-md transition-all;
+}
+
+.switch-checkbox:checked + .switch-button {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}
+
+.switch-label:active .switch-button {
+  width: 45%;
+}
