@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { mutate } from 'swr'
+import { usePathname } from 'next/navigation'
 import { ModalDeleteContext } from '../../utils/context/modalDeleteContext'
 import { BooksContext } from '../../utils/context/booksDataContext'
 import { BooksViewContext } from '../../utils/context/bookViewContext'
@@ -10,7 +11,6 @@ import {
   getGetBookKey,
   getGetBooksKey,
 } from '../../api/generated/book/book'
-import { usePathname } from 'next/navigation'
 
 function DeleteBookModal() {
   const pathName = usePathname()
@@ -46,8 +46,7 @@ function DeleteBookModal() {
       const cur = currentPage
       setCurrentPage(cur - 1)
     }
-    console.log(pathName)
-    pathName === `/book/${id}` && window.history.back()
+    if (pathName === `/book/${id}`) window.history.back()
   }
 
   return (
