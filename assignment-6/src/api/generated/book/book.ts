@@ -6,16 +6,9 @@
  * OpenAPI spec version: 1.0
  */
 import axios from 'axios'
-import type {
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosError
-} from 'axios'
+import type { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import useSwr from 'swr'
-import type {
-  SWRConfiguration,
-  Key
-} from 'swr'
+import type { SWRConfiguration, Key } from 'swr'
 import type {
   BooksResponse,
   ErrorResponse,
@@ -23,51 +16,60 @@ import type {
   BookResponse,
   CreateBookRequest,
   UpdateBookRequest,
-  MessageResponse
+  MessageResponse,
 } from '.././modal'
 
-
-  
-  /**
+/**
  * Get list of books
  * @summary Get list of books
  */
 export const getBooks = (
-    params?: GetBooksParams, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<BooksResponse>> => {
-    return axios.get(
-      `/books`,{
+  params?: GetBooksParams,
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<BooksResponse>> => {
+  return axios.get(`/books`, {
     ...options,
-        params: {...params, ...options?.params},}
-    );
-  }
+    params: { ...params, ...options?.params },
+  })
+}
 
+export const getGetBooksKey = (params?: GetBooksParams) =>
+  [`/books`, ...(params ? [params] : [])] as const
 
-export const getGetBooksKey = (params?: GetBooksParams,) => [`/books`, ...(params ? [params]: [])] as const;
-
-    
-export type GetBooksQueryResult = NonNullable<Awaited<ReturnType<typeof getBooks>>>
+export type GetBooksQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getBooks>>
+>
 export type GetBooksQueryError = AxiosError<ErrorResponse>
 
 /**
  * @summary Get list of books
  */
 export const useGetBooks = <TError = AxiosError<ErrorResponse>>(
- params?: GetBooksParams, options?: { swr?:SWRConfiguration<Awaited<ReturnType<typeof getBooks>>, TError> & { swrKey?: Key, enabled?: boolean }, axios?: AxiosRequestConfig }
-
-  ) => {
-
-  const {swr: swrOptions, axios: axiosOptions} = options ?? {}
+  params?: GetBooksParams,
+  options?: {
+    swr?: SWRConfiguration<Awaited<ReturnType<typeof getBooks>>, TError> & {
+      swrKey?: Key
+      enabled?: boolean
+    }
+    axios?: AxiosRequestConfig
+  },
+) => {
+  const { swr: swrOptions, axios: axiosOptions } = options ?? {}
 
   const isEnabled = swrOptions?.enabled !== false
-    const swrKey = swrOptions?.swrKey ?? (() => isEnabled ? getGetBooksKey(params) : null);
-  const swrFn = () => getBooks(params, axiosOptions);
+  const swrKey =
+    swrOptions?.swrKey ?? (() => (isEnabled ? getGetBooksKey(params) : null))
+  const swrFn = () => getBooks(params, axiosOptions)
 
-  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
+  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(
+    swrKey,
+    swrFn,
+    swrOptions,
+  )
 
   return {
     swrKey,
-    ...query
+    ...query,
   }
 }
 
@@ -76,53 +78,59 @@ export const useGetBooks = <TError = AxiosError<ErrorResponse>>(
  * @summary Create new book
  */
 export const createBook = (
-    createBookRequest: CreateBookRequest, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<BookResponse>> => {
-    return axios.post(
-      `/books`,
-      createBookRequest,options
-    );
-  }
-
+  createBookRequest: CreateBookRequest,
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<BookResponse>> => {
+  return axios.post(`/books`, createBookRequest, options)
+}
 
 /**
  * Get book by id
  * @summary Get book by id
  */
 export const getBook = (
-    id: number, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<BookResponse>> => {
-    return axios.get(
-      `/books/${id}`,options
-    );
-  }
+  id: number,
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<BookResponse>> => {
+  return axios.get(`/books/${id}`, options)
+}
 
+export const getGetBookKey = (id: number) => [`/books/${id}`] as const
 
-export const getGetBookKey = (id: number,) => [`/books/${id}`] as const;
-
-    
-export type GetBookQueryResult = NonNullable<Awaited<ReturnType<typeof getBook>>>
+export type GetBookQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getBook>>
+>
 export type GetBookQueryError = AxiosError<ErrorResponse>
 
 /**
  * @summary Get book by id
  */
 export const useGetBook = <TError = AxiosError<ErrorResponse>>(
- id: number, options?: { swr?:SWRConfiguration<Awaited<ReturnType<typeof getBook>>, TError> & { swrKey?: Key, enabled?: boolean }, axios?: AxiosRequestConfig }
+  id: number,
+  options?: {
+    swr?: SWRConfiguration<Awaited<ReturnType<typeof getBook>>, TError> & {
+      swrKey?: Key
+      enabled?: boolean
+    }
+    axios?: AxiosRequestConfig
+  },
+) => {
+  const { swr: swrOptions, axios: axiosOptions } = options ?? {}
 
-  ) => {
+  const isEnabled = swrOptions?.enabled !== false && !!id
+  const swrKey =
+    swrOptions?.swrKey ?? (() => (isEnabled ? getGetBookKey(id) : null))
+  const swrFn = () => getBook(id, axiosOptions)
 
-  const {swr: swrOptions, axios: axiosOptions} = options ?? {}
-
-  const isEnabled = swrOptions?.enabled !== false && !!(id)
-    const swrKey = swrOptions?.swrKey ?? (() => isEnabled ? getGetBookKey(id) : null);
-  const swrFn = () => getBook(id, axiosOptions);
-
-  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
+  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(
+    swrKey,
+    swrFn,
+    swrOptions,
+  )
 
   return {
     swrKey,
-    ...query
+    ...query,
   }
 }
 
@@ -131,26 +139,20 @@ export const useGetBook = <TError = AxiosError<ErrorResponse>>(
  * @summary Update book
  */
 export const updateBook = (
-    id: number,
-    updateBookRequest: UpdateBookRequest, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<BookResponse>> => {
-    return axios.put(
-      `/books/${id}`,
-      updateBookRequest,options
-    );
-  }
-
+  id: number,
+  updateBookRequest: UpdateBookRequest,
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<BookResponse>> => {
+  return axios.put(`/books/${id}`, updateBookRequest, options)
+}
 
 /**
  * Delete book by id
  * @summary Delete book by id
  */
 export const deleteBook = (
-    id: number, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<MessageResponse>> => {
-    return axios.delete(
-      `/books/${id}`,options
-    );
-  }
-
-
+  id: number,
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<MessageResponse>> => {
+  return axios.delete(`/books/${id}`, options)
+}
