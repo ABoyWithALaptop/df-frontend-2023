@@ -47,7 +47,8 @@ function LoginPage() {
       })
       .catch((err) => {
         setSubmitting(false)
-        toast.error(`login failed ${err}`)
+        console.log(err)
+        toast.error(`login failed: ${err.response.data.message}`)
       })
   }
   return (
