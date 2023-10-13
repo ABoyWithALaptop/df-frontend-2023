@@ -7,14 +7,16 @@ import { BooksContext } from '../../../utils/context/booksDataContext'
 import DeleteBookModal from '../../../components/modals/DeleteBookModal'
 import { useGetBook } from '../../../api/generated/book/book'
 import { redirect } from 'next/navigation'
+import { LoginContext } from '../../../utils/context/userContext'
 
 export default function DetailPage({ params }: { params: { id: string } }) {
   const { deleteItem, setDeleteItem } = useContext(ModalDeleteContext)
+  const { loginStatus } = useContext(LoginContext)
   const { id } = params
-  const { data: dataCurrentBook, error } = useGetBook(Number(id))
+  const { data: dataCurrentBook } = useGetBook(Number(id))
   const currentBookDetail = dataCurrentBook?.data?.data
-  if (error) {
-    redirect('/')
+  if (!loginStatus) {
+    redirect('/login')
   }
   return (
     <main className="main">
