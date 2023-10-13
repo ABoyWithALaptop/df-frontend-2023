@@ -39,15 +39,6 @@ function AddOrEditBookModal({
     useContext(BooksContext)
   const { currentView, maxView } = useContext(BooksViewContext)
   const { theme } = useTheme()
-  // const closeModalData = {
-  //   type: '',
-  //   setStatus: setIsModalOpen as (status: boolean | undefined) => void,
-  // }
-  // const handleCloseEsc = closeModal({
-  //   ...closeModalData,
-  //   type: 'esc',
-  // })
-
   useEffect(() => {
     document.addEventListener('keydown', (ev) =>
       closeModalEsc(
@@ -64,10 +55,6 @@ function AddOrEditBookModal({
       )
   }, [setIsModalOpen])
 
-  // const handleClose = closeModal({
-  //   ...closeModalData,
-  //   type: 'click',
-  // })
   const processSubmit: SubmitHandler<schemaType> = (data) => {
     let newList: book[]
     const { name, author, topic } = data
@@ -231,6 +218,7 @@ function AddOrEditBookModal({
             className={`primary standard-height-element ${
               theme === 'dark' && 'dark'
             }`}
+            onClick={(ev) => ev.stopPropagation()}
           >
             {editItem ? 'Edit' : 'Create'}
           </button>
