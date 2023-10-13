@@ -10,8 +10,10 @@ import {
   getGetBookKey,
   getGetBooksKey,
 } from '../../api/generated/book/book'
+import { usePathname } from 'next/navigation'
 
 function DeleteBookModal() {
+  const pathName = usePathname()
   const modalDeleteContext = React.useContext(ModalDeleteContext)
   const { searchedBookList, setSearchedBookList } = useContext(BooksContext)
   const { currentView, currentPage, setCurrentPage, maxView } =
@@ -44,6 +46,7 @@ function DeleteBookModal() {
       const cur = currentPage
       setCurrentPage(cur - 1)
     }
+    pathName === `/book/${id}` && window.history.back()
   }
 
   return (

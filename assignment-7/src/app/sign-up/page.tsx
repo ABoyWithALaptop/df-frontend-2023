@@ -43,6 +43,7 @@ function SignUpPage() {
     uppercase: false,
     specialChar: false,
   })
+  const [submitting, setSubmitting] = useState(false)
   const {
     register,
     handleSubmit,
@@ -52,6 +53,7 @@ function SignUpPage() {
   const router = useRouter()
 
   const processForm: SubmitHandler<SignUpSchemaType> = (data) => {
+    setSubmitting(true)
     const user = {
       email: data.email,
       password: data.password,
@@ -59,14 +61,20 @@ function SignUpPage() {
     }
     signup(user, {
       baseURL: process.env.API_URL,
-    }).then((res) => {
-      if (res?.data.data?.message === 'success') {
-        toast.success('sign up success')
-        router.replace('/login')
-      } else {
-        toast.error('sign up failed')
-      }
     })
+      .then((res) => {
+        if (res?.data.data?.message === 'success') {
+          toast.success('sign up success')
+          router.replace('/login')
+        } else {
+          toast.error('sign up failed')
+          setSubmitting(false)
+        }
+      })
+      .catch((err) => {
+        toast.error(`sign up failed: ${err.response.data.message}`)
+        setSubmitting(false)
+      })
   }
   const level = Object.values(metter).filter((value) => value).length
   const stringAlert: string[] = []
@@ -176,7 +184,11 @@ function SignUpPage() {
               }}
             />
           </label>
-          <button type="submit" className="standard-height-element primary ">
+          <button
+            type="submit"
+            className="standard-height-element primary disabled:bg-gray-400 disabled:cursor-not-allowed"
+            disabled={submitting}
+          >
             Sign up
           </button>
         </form>

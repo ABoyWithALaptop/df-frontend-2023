@@ -35,6 +35,7 @@ function AddOrEditBookModal({
   const { data: topicData } = useGetTopics()
   const { editItem, setEditItem } = useContext(ModalAddAndEditContext)
   const { currentPage, setCurrentPage } = useContext(BooksViewContext)
+  const [submitting, setSubmitting] = React.useState(false)
 
   useEffect(() => {
     document.addEventListener('keydown', (ev) =>
@@ -67,6 +68,7 @@ function AddOrEditBookModal({
       : { name: '', author: '', topic: '1' },
   })
   const processSubmit: SubmitHandler<schemaType> = (data) => {
+    setSubmitting(true)
     if (editItem) {
       updateBook(editItem.id, {
         name: data.name,
@@ -184,8 +186,9 @@ function AddOrEditBookModal({
 
           <button
             type="submit"
-            className="primary standard-height-element"
+            className="primary standard-height-element disabled:bg-gray-400 disabled:cursor-not-allowed"
             onClick={(ev) => ev.stopPropagation()}
+            disabled={submitting}
           >
             {editItem ? 'Edit' : 'create'}
           </button>
